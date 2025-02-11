@@ -4,6 +4,8 @@ import org.junit.runners.Parameterized;
 import praktikum.Bun;
 import praktikum.Ingredient;
 
+import static org.junit.Assert.assertEquals;
+
 @RunWith(Parameterized.class)
 public class BurgerPriceTest extends BaseTestCase {
 
@@ -30,6 +32,6 @@ public class BurgerPriceTest extends BaseTestCase {
     public void getPriceTest() {
         burger.addIngredient(ingredient);
         burger.setBuns(bun);
-        burger.getPrice();
+        assertEquals(expectedResult, burger.getPrice(), 0.1);
     }
 }

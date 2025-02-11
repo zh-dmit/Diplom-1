@@ -92,12 +92,11 @@ public class BurgerTests extends BaseTestCase {
         Mockito.when(bun.getPrice()).thenReturn(15f);
         Mockito.when(ingredient.getPrice()).thenReturn(10f);
 
-        burger.getReceipt();
+        String expectedReceipt = String.format(
+                "(==== %s ====)%n" + "= %s %s =%n" + "(==== %s ====)%n" + "%nPrice: %f%n",
+                "black bun", "sauce", "hot sauce", "black bun", 15f * 2 + 10f);
+        String actualReceipt = burger.getReceipt();
 
-        Mockito.verify(bun, Mockito.times(2)).getName();
-        Mockito.verify(ingredient, Mockito.times(1)).getType();
-        Mockito.verify(ingredient, Mockito.times(1)).getName();
-        Mockito.verify(bun, Mockito.times(1)).getPrice();
-        Mockito.verify(ingredient, Mockito.times(1)).getPrice();
+        assertEquals(expectedReceipt, actualReceipt);
     }
 }
